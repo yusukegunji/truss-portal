@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { currentUser } from "@/app/data/auth";
 import { signOut } from "@/app/actions/auth";
+import { ModeToggle } from "./theme-toggle-button";
 
 export default async function Header() {
   const user = await currentUser();
@@ -23,23 +24,27 @@ export default async function Header() {
         </Button>
       </div>
 
-      {!user ? (
-        <Button asChild>
-          <Link href="/signin">ログイン</Link>
-        </Button>
-      ) : (
-        <div className="flex items-center gap-4">
-          <Button asChild variant="ghost" className=" font-semibold">
-            <Link href="/dashboard">ダッシュボード</Link>
-          </Button>
+      <div className="flex items-center gap-4">
+        <ModeToggle></ModeToggle>
 
-          <form action={signOut}>
-            <Button asChild variant="ghost">
-              <Link href="/signin">ログアウト</Link>
+        {!user ? (
+          <Button asChild>
+            <Link href="/signin">ログイン</Link>
+          </Button>
+        ) : (
+          <div className="flex items-center gap-4">
+            <Button asChild variant="ghost" className=" font-semibold">
+              <Link href="/dashboard">ダッシュボード</Link>
             </Button>
-          </form>
-        </div>
-      )}
+
+            <form action={signOut}>
+              <Button asChild variant="ghost">
+                <Link href="/signin">ログアウト</Link>
+              </Button>
+            </form>
+          </div>
+        )}
+      </div>
     </header>
   );
 }

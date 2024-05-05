@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,9 +21,16 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={cn(inter.className, "min-h-dvh")}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
