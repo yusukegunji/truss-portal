@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import clsx from "clsx";
-import Icon from "./icon";
+import Icon from "../../../components/icon";
 
 const SideNav = ({ items }: { items: any[] }) => {
   const currentPath = usePathname();
@@ -19,7 +19,7 @@ const SideNav = ({ items }: { items: any[] }) => {
             href={link.path}
             className="flex h-[40px] items-center justify-center gap-3 px-2 rounded-md text-sm font-medium text-primary hover:bg-muted hover:font-bold md:justify-start"
           >
-            <Icon name={link.icon}></Icon>
+            <Icon name={link.icon} size={18}></Icon>
             <p
               className={clsx("hidden md:block", {
                 "font-extrabold text-cyan-400": currentPath === link.path,

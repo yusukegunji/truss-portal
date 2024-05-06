@@ -22,18 +22,6 @@ export default async function Header() {
       </Link>
 
       <div className="flex items-center gap-4">
-        <Button asChild variant="ghost">
-          <Link href="/about">ABOUT</Link>
-        </Button>
-        <Button asChild variant="ghost">
-          <Link href="/tech">TechBlog</Link>
-        </Button>
-        <Button asChild variant="ghost">
-          <Link href="/api-doc">API</Link>
-        </Button>
-      </div>
-
-      <div className="flex items-center gap-4">
         {!user ? (
           <Button asChild>
             <Link href="/signin">ログイン</Link>
@@ -51,16 +39,20 @@ export default async function Header() {
                 <Avatar>
                   <AvatarImage
                     src={user.user_metadata.avatar_url}
-                    alt="@shadcn"
+                    alt="avatar"
                   />
                   <AvatarFallback>
                     {user.user_metadata.full_name.slice(0, 2)}
                   </AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
+
               <DropdownMenuContent>
                 <DropdownMenuLabel>アカウント</DropdownMenuLabel>
                 <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link href="/profile">プロフィール</Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem>
                   <form action={signOut}>
                     <span className="cursor-pointer">ログアウト</span>
