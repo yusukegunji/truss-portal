@@ -63,9 +63,7 @@ export default async function Header() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
                   <form action={signOut}>
-                    <Button asChild variant="ghost">
-                      <Link href="/signin">ログアウト</Link>
-                    </Button>
+                    <span className="cursor-pointer">ログアウト</span>
                   </form>
                 </DropdownMenuItem>
               </DropdownMenuContent>

@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import SideNav from "@/components/side-nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +19,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const items = [
+    { name: "ホーム", icon: "home", path: "" },
+    { name: "Info", icon: "info", path: "info" },
+    { name: "リソース", icon: "file-text", path: "resource" },
+    { name: "リリース情報", icon: "rocket", path: "release" },
+    { name: "メンバー", icon: "users", path: "member" },
+    { name: "プロジェクト", icon: "gantt-chart", path: "project" },
+    { name: "開発", icon: "code", path: "develop" },
+    { name: "API", icon: "globe", path: "api-docs" },
+    { name: "ブログ", icon: "rss", path: "blog" },
+  ];
+
   return (
-    <html lang="ja">
+    <html lang="ja" suppressHydrationWarning={true}>
       <body className={cn(inter.className, "min-h-dvh")}>
         <ThemeProvider
           attribute="class"
@@ -28,6 +41,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
+          <SideNav items={items}></SideNav>
           <main>{children}</main>
           <Footer />
         </ThemeProvider>
