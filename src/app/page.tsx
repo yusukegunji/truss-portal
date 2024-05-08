@@ -1,7 +1,9 @@
+import SummaryCardList from "./_components/summary-card-list";
+
 export default function Home() {
   return (
-    <div className="p-6">
-      <h1>Home</h1>
+    <div className="ml-64 container p-6">
+      <SummaryCardList />
     </div>
   );
 }
