@@ -1,17 +1,21 @@
 import { Button } from "@/components/ui/button";
 import {
-  DialogTrigger,
-  DialogTitle,
+  Dialog,
+  DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogFooter,
-  DialogContent,
-  Dialog,
+  DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 
-export default function ProfileDialog() {
+import { Tables } from "../../../../types/database";
+import ProfileForm from "./profile-form";
+
+export default function ProfileDialog({
+  profile,
+}: {
+  profile: Tables<"profiles">;
+}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -19,36 +23,13 @@ export default function ProfileDialog() {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
+          <DialogTitle>プロフィールを編集</DialogTitle>
           <DialogDescription>
             ここでプロフィールを変更します。完了したら保存をクリックしてください
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label className="text-right" htmlFor="name">
-              Name
-            </Label>
-            <Input
-              className="col-span-3"
-              defaultValue="Pedro Duarte"
-              id="name"
-            />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label className="text-right" htmlFor="username">
-              Username
-            </Label>
-            <Input
-              className="col-span-3"
-              defaultValue="@peduarte"
-              id="username"
-            />
-          </div>
-        </div>
-        <DialogFooter>
-          <Button type="submit">Save changes</Button>
-        </DialogFooter>
+
+        <ProfileForm profile={profile} />
       </DialogContent>
     </Dialog>
   );

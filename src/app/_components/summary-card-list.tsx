@@ -6,6 +6,7 @@ import {
   UserPlus,
 } from "lucide-react";
 import Link from "next/link";
+import { SiAsana, SiGoogleanalytics, SiStripe } from "react-icons/si";
 
 export default function SummaryCardList() {
   return (
@@ -14,10 +15,10 @@ export default function SummaryCardList() {
         href="https://analytics.google.com/analytics/web/#/p386284603/reports/reportinghub"
         target="_blank"
       >
-        <Card className="group p-4 shadow-sm hover:border-orange-400">
+        <Card className="group p-4 hover:border-orange-400">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">月間PV</CardTitle>
-            <Activity size={24} />
+            <SiGoogleanalytics size={24} />
           </CardHeader>
           <CardContent>
             <span className="text-2xl font-bold group-hover:text-orange-400">
@@ -32,7 +33,7 @@ export default function SummaryCardList() {
         href="https://analytics.google.com/analytics/web/#/p386284603/reports/reportinghub"
         target="_blank"
       >
-        <Card className="group p-4 shadow-sm hover:border-orange-400">
+        <Card className="group p-4 hover:border-orange-400">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">新規登録</CardTitle>
             <UserPlus size={24} />
@@ -47,10 +48,10 @@ export default function SummaryCardList() {
       </Link>
 
       <Link href="https://dashboard.stripe.com/dashboard" target="_blank">
-        <Card className="group p-4 shadow-sm hover:border-indigo-500">
+        <Card className="group p-4 hover:border-indigo-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">月間総売上</CardTitle>
-            <CircleDollarSign size={24} />
+            <SiStripe size={24} />
           </CardHeader>
           <CardContent>
             <span className="text-2xl font-bold group-hover:text-indigo-500">
@@ -65,10 +66,10 @@ export default function SummaryCardList() {
         href="https://app.asana.com/0/1206817121238028/1206818071106072"
         target="_blank"
       >
-        <Card className="group p-4 shadow-sm hover:border-red-400">
+        <Card className="group p-4 hover:border-red-400">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">月間タスク</CardTitle>
-            <SquareCheckBig size={24} />
+            <SiAsana size={24} />
           </CardHeader>
           <CardContent>
             <span className="text-2xl font-bold group-hover:text-red-400">

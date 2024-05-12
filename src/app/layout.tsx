@@ -7,6 +7,7 @@ import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import SideNav from "@/app/(main)/_components/side-nav";
 import { Categories } from "@/assets/data/category";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,8 @@ export default function RootLayout({
           <SideNav items={Categories}></SideNav>
           <main>{children}</main>
           <Footer />
+
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
