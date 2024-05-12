@@ -9,6 +9,8 @@ import Icon from "../../../components/icon";
 
 const SideNav = ({ items }: { items: any[] }) => {
   const currentPath = usePathname();
+  const strippedPath =
+    currentPath === "/" ? currentPath : currentPath.replace(/^\//, "");
 
   return (
     <nav className="fixed top-14 hidden h-[calc(100dvh-7rem)] w-64 gap-4 overflow-y-auto border-r bg-background p-4 md:flex md:flex-col">
@@ -22,7 +24,7 @@ const SideNav = ({ items }: { items: any[] }) => {
             <Icon name={link.icon} size={18}></Icon>
             <p
               className={clsx("hidden md:block", {
-                "font-extrabold text-cyan-400": currentPath === link.path,
+                "font-extrabold text-cyan-400": strippedPath === link.path,
               })}
             >
               {link.name}
