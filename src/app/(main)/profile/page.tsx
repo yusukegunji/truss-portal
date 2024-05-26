@@ -6,6 +6,7 @@ import ProfileDialog from "../_components/profile-dialog";
 
 export default async function ProfilePage() {
   const user: User | null = await currentUser();
+  console.log(user, "user");
 
   if (!user) {
     redirect("/signin");

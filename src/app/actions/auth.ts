@@ -15,12 +15,19 @@ export const signInAnonyMously = async () => {
 
 export const signInWithGithub = async () => {
   const supabase = createClient();
+
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "github",
     options: {
       redirectTo: `${host}/auth/callback`,
     },
   });
+
+  if (error) {
+    console.error(error);
+    console.log(data, "data");
+    return;
+  }
 
   if (data.url) {
     redirect(data.url);

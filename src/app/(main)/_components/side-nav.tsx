@@ -13,7 +13,7 @@ const SideNav = ({ items }: { items: any[] }) => {
     currentPath === "/" ? currentPath : currentPath.replace(/^\//, "");
 
   return (
-    <nav className="fixed top-14 hidden h-[calc(100dvh-7rem)] w-64 gap-4 overflow-y-auto border-r bg-background p-4 md:flex md:flex-col">
+    <nav className="sticky left-0 top-14 hidden h-[calc(100dvh-7rem)] w-64 gap-4 overflow-y-auto border-r bg-background p-4 md:flex md:flex-col">
       {items.map((link) => {
         return (
           <Link

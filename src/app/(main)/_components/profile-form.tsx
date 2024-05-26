@@ -19,6 +19,7 @@ import { Tables } from "../../../../types/database";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { useToast } from "@/components/ui/use-toast";
+import { DialogFooter } from "@/components/ui/dialog";
 
 export default function ProfileForm({
   profile,
@@ -33,6 +34,7 @@ export default function ProfileForm({
       name: profile.name || "",
       email: profile.email || "",
     },
+    mode: "onBlur",
   });
 
   type ProfileFormType = z.infer<typeof ProfileSchema>;
@@ -42,6 +44,8 @@ export default function ProfileForm({
     const updatedProfile = {
       ...formData,
     };
+
+    console.log(form, form.formState, "form", "formState");
 
     await updateProfile(profile.id, updatedProfile);
 
@@ -54,7 +58,9 @@ export default function ProfileForm({
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit, (errors) => {
+          console.log(errors, "errors");
+        })}
         className="flex flex-col gap-2"
       >
         <FormField
@@ -66,7 +72,6 @@ export default function ProfileForm({
               <FormControl>
                 <Input type="text" className="mt-2" {...field} />
               </FormControl>
-              <FormDescription>公開される表示名です</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -80,13 +85,15 @@ export default function ProfileForm({
               <FormControl>
                 <Input type="email" className="mt-2" {...field} />
               </FormControl>
-              <FormDescription>公開されるメールアドレスです</FormDescription>
-
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">保存</Button>
+        <DialogFooter>
+          <Button type="submit" disabled={!form.formState.isValid}>
+            保存
+          </Button>
+        </DialogFooter>
       </form>
     </Form>
   );

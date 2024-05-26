@@ -18,7 +18,7 @@ export default async function Header() {
   return (
     <header className="h-14 px-4 border-b flex items-center justify-between">
       <Link href="/" className="font-bold">
-        とらぽーと -truss portal-
+        とらぽーと 丸の内
       </Link>
 
       <div className="flex items-center gap-4">
