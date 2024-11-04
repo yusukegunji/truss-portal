@@ -16,7 +16,7 @@ import {
 export default async function Header() {
   const user = await currentUser();
   return (
-    <header className="h-14 px-4 border-b flex items-center justify-between">
+    <header className="sticky top-0 h-14 px-4 border-b flex items-center justify-between bg-background z-50">
       <Link href="/" className="font-bold">
         とらぽーと 丸の内
       </Link>

@@ -1,46 +1,19 @@
-"use client";
-
-import { redirect, useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 import { currentUser } from "../data/auth";
-import { EditorSchemaType } from "./schema/editor-schema";
-import { PostgrestSingleResponse } from "@supabase/supabase-js";
-import { toast } from "@/components/ui/use-toast";
-import Editor from "./_components/editor";
-import { createPost } from "../actions/post";
+import dynamic from "next/dynamic";
 
-export default function Page() {
-  // const user = await currentUser();
+const Editor = dynamic(() => import("./_components/editor"), { ssr: false });
 
-  // if (!user) {
-  //   redirect("/signin");
-  // }
-  const router = useRouter();
+export default async function Page() {
+  const user = await currentUser();
 
-  const onHandleSubmit = async (data: EditorSchemaType) => {
-    const result = JSON.parse(await createPost(data));
-
-    const { error } = result as PostgrestSingleResponse<null>;
-    if (error?.message) {
-      toast({
-        title: "Fail to create a post 😢",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">{error.message}</code>
-          </pre>
-        ),
-      });
-    } else {
-      toast({
-        title: "Successfully create a post 🎉",
-        description: data.title,
-      });
-      router.push("/dashboard");
-    }
-  };
+  if (!user) {
+    redirect("/signin");
+  }
 
   return (
     <div className="p-6">
-      <Editor onHandleSubmit={onHandleSubmit} />
+      <Editor user={user} />
     </div>
   );
 }

@@ -9,18 +9,20 @@ export const getUsers = async () => {
   return data;
 };
 
-export const getUser = async (id: string): Promise<Tables<"profiles">> => {
+export const getUser = async (id: string): Promise<Tables<"users">> => {
   const supabase = createClient();
   const { data, error } = await supabase
-    .from("profiles")
+    .from("users")
     .select("*")
-    .eq("userId", id)
+    .eq("id", id)
     .single();
 
   if (error) {
     console.log(error);
     throw error;
   }
+
+  console.log(data, "data");
 
   return data as Tables<"profiles">;
 };

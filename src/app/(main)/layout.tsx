@@ -1,3 +1,6 @@
+import { Categories } from "@/assets/data/category";
+import SideNav from "./_components/side-nav";
+
 export default function MainLayout({
   children,
 }: Readonly<{
@@ -5,7 +8,8 @@ export default function MainLayout({
 }>) {
   return (
     <div>
-      <main className="pl-64 pt-8 container">{children}</main>
+      <SideNav items={Categories}></SideNav>
+      <main className="p-6 container">{children}</main>
     </div>
   );
 }

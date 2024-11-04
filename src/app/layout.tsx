@@ -31,10 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <div className="flex">
-            <SideNav items={Categories}></SideNav>
-            <main className="container">{children}</main>
-          </div>
+          <main className="p-6">{children}</main>
           <Footer />
 
           <Toaster />

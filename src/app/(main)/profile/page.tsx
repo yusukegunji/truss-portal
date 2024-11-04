@@ -1,3 +1,4 @@
+"use server";
 import { currentUser } from "@/app/data/auth";
 import { getUser } from "@/app/data/user";
 import { User } from "@supabase/supabase-js";
@@ -6,13 +7,13 @@ import ProfileDialog from "../_components/profile-dialog";
 
 export default async function ProfilePage() {
   const user: User | null = await currentUser();
-  console.log(user, "user");
+  // console.log(user, "user");
 
   if (!user) {
     redirect("/signin");
   }
 
-  const profile = await getUser(user?.id);
+  const profile = await getUser(user.id);
 
   return (
     <div>

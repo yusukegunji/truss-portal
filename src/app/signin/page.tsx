@@ -1,6 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { currentUser } from "../data/auth";
-import { signInAnonyMously, signInWithGithub, signOut } from "../actions/auth";
+import {
+  signInAnonyMously,
+  signInWithEmail,
+  signInWithGithub,
+  signOut,
+} from "../actions/auth";
 import { redirect } from "next/navigation";
 
 export default async function Page() {
