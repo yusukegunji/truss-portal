@@ -38,3 +38,27 @@ export const signOut = async () => {
   const supabase = createClient();
   await supabase.auth.signOut();
 };
+
+export const signInWithEmail = async (email: string, password: string) => {
+  const supabase = createClient();
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    console.error(error);
+
+    const messages: {
+      [key: string]: string;
+    } = {
+      "Invalid login credentials": "メールアドレスかパスワードが間違っています",
+    };
+
+    return {
+      errorMessage: error.message && messages[error.message],
+    };
+  }
+
+  redirect("/auth/sign-in");
+};
